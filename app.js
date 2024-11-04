@@ -1,9 +1,11 @@
+require('dotenv').config();
 const express = require('express');
-const mysql = require('mysql2');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const PDFDocument = require('pdfkit'); // Add PDFKit for PDF generation
 const ExcelJS = require('exceljs'); // Add ExcelJS for Excel generation
+const db = require('./db');
+
 
 const app = express();
 app.use(cors({
@@ -15,20 +17,20 @@ app.use(cors({
 app.use(bodyParser.json());
 
 // Create connection to the MySQL database
-const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'Ithihas@97',
-    database: 'sitevisit' // Change this to your database name
-});
+// const db = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'root',
+//     password: 'Ithihas@97',
+//     database: 'sitevisit'
+// });
 
-// Connect to the database
-db.connect((err) => {
-    if (err) {
-        throw err;
-    }
-    console.log('Connected to MySQL database');
-});
+
+// db.connect((err) => {
+//     if (err) {
+//         throw err;
+//     }
+//     console.log('Connected to MySQL database');
+// });
 
 // Create a new site visit
 app.post('/api/site-visits', (req, res) => {
